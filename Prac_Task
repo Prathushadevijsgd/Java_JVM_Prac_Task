@@ -1,6 +1,6 @@
 **Java and JVM Practical Task**
 
-Install openjdk
+**Install openjdk**
 
 sudo apt update && sudo apt upgrade -y
 
@@ -10,8 +10,7 @@ java -version
 
 cd /opt
 
-Download/install Tomcat server.
-
+**Download/install Tomcat server**
 
 sudo wget https://dlcdn.apache.org/tomcat/tomcat-9/v9.0.97/bin/apache-tomcat-9.0.97.tar.gz
 
@@ -44,7 +43,6 @@ ExecStop=/opt/tomcat/bin/shutdown.sh
 WantedBy=multi-user.target
 
 
-
 sudo systemctl daemon-reload
 sudo systemctl enable tomcat
 sudo systemctl start tomcat
@@ -53,7 +51,7 @@ sudo systemctl status tomcat
 
 http://<ec2-public-ip>:8080
 
-Enable JMX in Tomcat
+**Enable JMX in Tomcat**
 
 Create setenv.sh 
 
@@ -61,7 +59,7 @@ cd /opt/tomcat/bin
 sudo touch setenv.sh
 sudo chmod +x setenv.sh
 
-Add JMX Configuration to setenv.sh:
+**Add JMX Configuration to setenv.sh**
 
 sudo vi /opt/tomcat/bin/setenv.sh
 
@@ -112,24 +110,21 @@ export CATALINA_OPTS="$CATALINA_OPTS \
 -Djava.rmi.server.useCodebaseOnly=false"
 
 
-
-
-
-Rerun tomcat with min heap size 10M and max heap size 20M.
+**Rerun tomcat with min heap size 10M and max heap size 20M.**
 
 export CATALINA_OPTS="$CATALINA_OPTS \
 -Xms10m \
 -Xmx20m \
 
 
-Increase min heap size to 1G and max heap size to 3G, enable parallel garbage collector.
+**Increase min heap size to 1G and max heap size to 3G, enable parallel garbage collector.**
 
 export CATALINA_OPTS="$CATALINA_OPTS \
 -Xms1g \
 -Xmx3g \
 -XX:+UseParallelGC \
 
-Launch Jenkins WAR as a standalone application, verify that it works.
+**Launch Jenkins WAR as a standalone application, verify that it works.**
 
 
 java -jar jenkins.war
